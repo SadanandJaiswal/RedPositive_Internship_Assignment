@@ -74,8 +74,8 @@ exports.sendEmail = async (req, res) => {
             text: JSON.stringify(users, null, 2),
         };
 
-        await transporter.sendMail(mailOptions);
-        res.json({ message: 'Email sent' });
+        const response = await transporter.sendMail(mailOptions);
+        res.json({ message: 'Email sent', to: response.accepted});
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
