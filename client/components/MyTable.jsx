@@ -10,7 +10,7 @@ const MyTable = ({ data, onCheckboxChange, onUpdateClick, onDeleteClick }) => {
         display="flex"
         alignItems="center"
         justifyContent="center"
-        border="1px solid"
+        // border="1px solid"
         p={4}
       >
         <Heading as="h2" size="lg" fontWeight="bold">
@@ -20,57 +20,59 @@ const MyTable = ({ data, onCheckboxChange, onUpdateClick, onDeleteClick }) => {
     )
   }else{
     return (
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th>Select 
-            </Th>
-            <Th>ID</Th>
-            <Th>Name</Th>
-            <Th>Phone Number</Th>
-            <Th>Email</Th>
-            <Th>Hobbies</Th>
-            <Th>Update/Delete</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {data.map((item, index) => (
-            <Tr key={item.id}>
-              <Td>
-                <Checkbox onChange={() => onCheckboxChange(item._id)} />
-              </Td>
-              <Td>{index+1}</Td>
-              <Td>{item.name}</Td>
-              <Td>{item.phoneNumber}</Td>
-              <Td>{item.email}</Td>
-              <Td>
-                <Flex wrap="wrap">
-                  {item.hobbies.map((hobby, index) => (
-                    <Box key={index} m={1} p={1} bg="gray.200" borderRadius="md">
-                      {hobby}
-                    </Box>
-                  ))}
-                </Flex>
-              </Td>
-              <Td>
-                <IconButton
-                  colorScheme="blue"
-                  size="sm"
-                  icon={<EditIcon />}
-                  onClick={() => onUpdateClick(index)}
-                />
-                <IconButton
-                  colorScheme="red"
-                  size="sm"
-                  ml={2}
-                  icon={<DeleteIcon />}
-                  onClick={() => onDeleteClick(item._id,index)}
-                />
-              </Td>
+      <Box m={2} border={"0px solid red"}>
+        <Table variant='striped' colorScheme=''>
+          <Thead>
+            <Tr>
+              <Th>Select 
+              </Th>
+              <Th>ID</Th>
+              <Th>Name</Th>
+              <Th>Phone Number</Th>
+              <Th>Email</Th>
+              <Th>Hobbies</Th>
+              <Th>Update/Delete</Th>
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
+          </Thead>
+          <Tbody>
+            {data.map((item, index) => (
+              <Tr key={item.id}>
+                <Td>
+                  <Checkbox onChange={() => onCheckboxChange(item._id)} colorScheme={"red"} size='lg' />
+                </Td>
+                <Td>{index+1}</Td>
+                <Td>{item.name}</Td>
+                <Td>{item.phoneNumber}</Td>
+                <Td>{item.email}</Td>
+                <Td>
+                  <Flex wrap="wrap">
+                    {item.hobbies.map((hobby, index) => (
+                      <Box key={index} m={1} p={1} bg="gray.200" borderRadius="md">
+                        {hobby}
+                      </Box>
+                    ))}
+                  </Flex>
+                </Td>
+                <Td>
+                  <IconButton
+                    colorScheme="blue"
+                    size="sm"
+                    icon={<EditIcon />}
+                    onClick={() => onUpdateClick(index)}
+                  />
+                  <IconButton
+                    colorScheme="red"
+                    size="sm"
+                    ml={2}
+                    icon={<DeleteIcon />}
+                    onClick={() => onDeleteClick(item._id,index)}
+                  />
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </Box>
     );
   }
 };

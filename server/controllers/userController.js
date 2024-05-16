@@ -69,7 +69,7 @@ exports.sendEmail = async (req, res) => {
         const mailOptions = {
             from: process.env.EMAIL_USER,
             // to: 'info@redpositive.in',
-            to: 'jaiswalsadanand721@gmail.com',
+            to: 'sadanandjaiswal92@gmail.com',
             subject: 'Selected User Data',
             text: JSON.stringify(users, null, 2),
         };

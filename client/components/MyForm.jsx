@@ -1,9 +1,9 @@
 "use client"
 
 import { useEffect, useState } from 'react';
-import { Flex, FormControl, FormLabel, Input, Button, Box } from '@chakra-ui/react';
+import { Flex, FormControl, FormLabel, Input, Button, Box, useToast  } from '@chakra-ui/react';
 import axios from 'axios';
-const API_URL = "http://localhost:8000/api";
+const API_URL = "https://redpositive-internship-assignment.onrender.com/api";
 
 const MyForm = ({setTableData, setIsOpen, isUpdate, currData}) => {
   const [formData, setFormData] = useState({
@@ -13,6 +13,8 @@ const MyForm = ({setTableData, setIsOpen, isUpdate, currData}) => {
     hobbies: [],
     hobbyInput: ''
   });
+
+  const toast = useToast();
 
   // const [hobbyInput, setHobbyInput] = useState("");
 
@@ -60,7 +62,12 @@ const MyForm = ({setTableData, setIsOpen, isUpdate, currData}) => {
       });
   
       if (response) {
-        alert(`Successfully ${isUpdate ? 'Updated' : 'Added'} the Data`);
+        toast({
+          title: `Successfully ${isUpdate ? 'Updated' : 'Added'} the Data`,
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        })
         setTableData((prevData) => {
           const updatedData = [...prevData];
           if (isUpdate) {
