@@ -144,6 +144,7 @@ const Home = () => {
       bgGradient="linear(to-r, blue.200, blue.400)"
       minHeight="100vh"
       minWidth="100vw"
+      pb={4}
     >
        <Box
           display="flex"
